@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  application:
+    build: .
+    container_name: application
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - "8000:8000"
+    env_file: myproject/.env
+    restart: always
+
+    depends_on:
+      - postgresap
+
+  postgresap:
+    image: postgres:14.3-alpine
+    hostname: prostgresap
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: 'djangouser'
+      POSTGRES_PASSWORD: 'djangopassword'
+      POSTGRES_DB: 'postgresdb'
+    volumes:
+      - postgresql_space:/var/lib/postgresql/data
+
+volumes:
+  postgresql_space:
