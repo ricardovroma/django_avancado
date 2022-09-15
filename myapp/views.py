@@ -1,7 +1,7 @@
 from django.db.models import Count, Sum
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, ListView, TemplateView, FormView
-from .forms import ContactForm, MusicianForm
+from django.views.generic import DetailView, ListView, TemplateView, FormView, CreateView, UpdateView, DeleteView
+from .forms import ContactForm, MusicianForm, AlbumForm
 from .models import Musician, Album
 from django.shortcuts import render, redirect
 
@@ -18,18 +18,37 @@ class MusicianListView(ListView):
 class AlbumListView(ListView):
     model = Album
     allow_empty = True
-    template_name = 'album_listview.html'
-    queryset = Album.objects.all()
-    context_object_name = 'albuns'
+    template_name = 'album.html'
+    # albums = Album.objects.all()
+    context_object_name = 'albums'
 
 
 class AlbumDetailView(DetailView):
-    model = Album
+    queryset = Album.objects.all()
+    template_name = 'album_detail.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['musician_list'] = Musician.objects.all()
         return context
+
+
+class AlbumCreateView(CreateView):
+    template_name = 'album-form.html'
+    form_class = AlbumForm
+    success_url = reverse_lazy('list_album')
+
+
+class AlbumUpdateView(UpdateView):
+    model = Album
+    fields = '__all__'
+    template_name = 'album-form.html'
+    success_url = reverse_lazy('list_album')
+
+
+class AlbumDeleteView(DeleteView):
+    model = Album
+    success_url = reverse_lazy('list_album')
 
 
 class AboutUs(TemplateView):

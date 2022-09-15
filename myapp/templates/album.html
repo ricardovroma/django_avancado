@@ -9,15 +9,15 @@
 </head>
 <body>
 <ul>
-    <h2>Sum of all musicians Salary:</h2>
-    <h3>$ {{number_of_musicians.sum_salary}}</h3>
-    {% for musician in musicians %}
-    <a href="{% url 'update_musician' musician.id %}">
-        <li> {{ musician.first_name }}</li>
+<!--    <h2>Sum of all musicians Salary:</h2>-->
+<!--    <h3>$ {{number_of_musicians.sum_salary}}</h3>-->
+    {% for album in albums %}
+    <a href="{% url 'detail_album' pk=album.id %}">
+        <li> {{ album.name }} - <a href="{% url 'update_album' pk=album.id %}">Editar</a></li>
     </a>
     {% endfor %}
 </ul>
 
-<a href="{% url 'create_musician' %}">New Musician</a>
+<a href="{% url 'create_album' %}">New Album</a>
 </body>
 </html>

@@ -8,16 +8,15 @@
     <title>Document</title>
 </head>
 <body>
-<ul>
-    <h2>Sum of all musicians Salary:</h2>
-    <h3>$ {{number_of_musicians.sum_salary}}</h3>
-    {% for musician in musicians %}
-    <a href="{% url 'update_musician' musician.id %}">
-        <li> {{ musician.first_name }}</li>
-    </a>
-    {% endfor %}
-</ul>
+<input type="submit" onclick="location.href = {% url 'list_album' %}" value="Voltar">
+<br>
+<br>
 
-<a href="{% url 'create_musician' %}">New Musician</a>
+Name: {{ object.name }}
+<br>
+Artist: {{ object.artist}}
+<br>
+Num stars: {{ object.num_stars }}
+
 </body>
 </html>

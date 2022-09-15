@@ -11,8 +11,8 @@ class ContactForm(forms.Form):
         # send email using the self.cleaned_data dictionary
         pass
 
-class MusicianForm(forms.ModelForm):
 
+class MusicianForm(forms.ModelForm):
     class Meta:
         model = Musician
 
@@ -23,3 +23,9 @@ class MusicianForm(forms.ModelForm):
             'instrument',
             'salary',
         ]
+
+
+class AlbumForm(forms.ModelForm):
+    class Meta:
+        model = Album
+        fields = '__all__'

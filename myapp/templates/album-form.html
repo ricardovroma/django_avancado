@@ -9,15 +9,15 @@
 </head>
 <body>
 
-<h1>New/Update musician</h1>
+<h1>New/Update Album</h1>
 
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Save</button>
-    <button type="reset" onclick="location.href = '{% url 'list_musician' %}'">Voltar</button>
-    {% if musician %}
-    <button><a href="{% url 'delete_musician' musician.id %}">Delete</a></button>
+    <button type="reset" onclick="location.href = '{% url 'list_album' %}'">Voltar</button>
+    {% if album %}
+    <button><a href="{% url 'delete_album' album.id %}">Delete</a></button>
     {% endif %}
 </form>
 
